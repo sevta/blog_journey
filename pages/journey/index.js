@@ -33,6 +33,10 @@ export default function JourneyPage() {
     parallax(".parallax-text", y, 0.3);
   }
 
+  useEffect(() => {
+    console.log("is tablet", isTabletOrMobile);
+  }, [isTabletOrMobile]);
+
   return (
     <>
       <div className="py-6 grid grid-cols-3 fixed top-0 left-0 w-full px-10 sm:px-5 z-10">
@@ -83,7 +87,12 @@ export default function JourneyPage() {
 
             <div className="mt-10 max-w-7xl px-10 mx-auto">
               <Masonry
-                breakpointCols={isTabletOrMobile ? 1 : 4}
+                breakpointCols={{
+                  default: 4,
+                  1100: 3,
+                  700: 2,
+                  500: 1,
+                }}
                 className="my-masonry-grid gap-5"
                 columnClassName="my-masonry-grid_column even:pt-[40px] space-y-5"
               >
